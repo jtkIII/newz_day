@@ -20,3 +20,39 @@ class APIResponse(BaseModel):
 class API_Error(BaseModel):
     message: str
     code: int
+
+
+class NewsItem(BaseModel):
+    id: int
+    title: str
+    timestamp: str
+    url: str
+    summary: str
+    image_url: str
+    category: str
+
+
+categories = frozenset(
+    {
+        "technology",
+        "politics",
+        "culture",
+        "business",
+        "programming",
+        "sports",
+        "entertainment",
+        "health",
+        "science",
+        "world",
+        "finance",
+        "travel",
+        "education",
+        "environment",
+        "lifestyle",
+        "food",
+        "privacy",
+        "internet",
+        "gaming",
+        "music",
+    }
+)

@@ -1,6 +1,6 @@
 # newz.day
 
-## Efficient, Propaganda Resistant News.  Daily
+## Efficient, Propaganda Resistant, News.  Daily
 
 ### Start the server
 
