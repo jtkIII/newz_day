@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Newz.Day</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+
+<body>
+    <h1>Item List</h1>
+    <ul id="item-list" class="item-list divide-y divide-gray-200 bg-white rounded-lg shadow-sm overflow-hidden" role="list" aria-live="polite" aria-relevant="additions">
+        {% if items %}
+            {% for item in items %}
+                <li class="item flex items-center px-4 py-3 hover:bg-gray-50 focus-within:bg-gray-50 transition-colors" data-index="{{ loop.index0 }}">
+                    <a href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer" class="flex-1 text-sm font-medium text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">
+                        {{ item.title | escape }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="item-empty px-4 py-6 text-center text-sm text-gray-500">No items yet</li>
+        {% endif %}
+    </ul>
+    <form 
+        hx-post="/add-item" 
+        hx-target="#item-list" 
+        hx-swap="beforeend" 
+        hx-include="#item-input">
+        <input type="text" id="item-input" name="item" required>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200">Add Item</button>
+    </form>
+</body>
+
+</html>
