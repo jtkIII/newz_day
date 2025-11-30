@@ -40,7 +40,7 @@ class CategoryEnum(str, Enum):
     education = "education"
     environment = "environment"
     lifestyle = "lifestyle"
-    food = "food"
+    crypto = "crypto"
     privacy = "privacy"
     internet = "internet"
     gaming = "gaming"
