@@ -1,10 +1,19 @@
-<header class="bg-white shadow mb-6">
-  <div class="max-w-4xl mx-auto flex items-center justify-between p-4">
-    <a href="/" class="text-2xl font-semibold">Newz.Day</a>
-        <nav class="flex space-x-4">
-          <a href="/latest" class="hover:underline">Latest</a>
-          <a href="/hottest" class="hover:underline">Hottest</a>
-          <a href="/summary" class="hover:underline">Summary</a>
+
+
+<header class="bg-white dark:bg-gray-800 text-black dark:text-white shadow mb-6">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-3">
+    
+    <a href="/" id="newzday" class="text-2xl font-semibold">Newz.Day</a>
+
+      <nav id="nav" class="flex space-x-4">
+        <a href="/latest" class="hover:underline">Latest</a>
+        <a href="/hottest" class="hover:underline">Hottest</a>
+        <a href="/summary" class="hover:underline">Summary</a>
       </nav>
+      
+      {% include "_toggle.html" %}
+    
     </div>
 </header>
+
+
