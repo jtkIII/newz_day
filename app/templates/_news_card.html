@@ -1,0 +1,53 @@
+<li class="item group bg-white rounded-lg shadow-sm hover:shadow-md transition overflow-hidden">
+  <article>
+
+    {% if item.image_url %}
+      <img 
+        src="{{ item.image_url | escape }}" 
+        alt="{{ item.title | escape }}" 
+        class="h-56 w-full object-cover">
+    {% endif %}
+
+    <div class="py-5 px-3">
+
+      <time class="block text-xs font-semibold text-gray-400">
+          <span class="js-date" data-timestamp="{{ item.timestamp | escape }}"></span>
+          <script>
+            (function(){
+              const script = document.currentScript;
+              const el = script && script.previousElementSibling;
+              if (!el) return;
+              const ts = el.getAttribute('data-timestamp');
+              if (!ts) return;
+              const d = new Date(ts);
+              el.textContent = isNaN(d) ? ts : d.toLocaleDateString();
+            })();
+          </script>
+      </time>
+
+      <h3 class="text-lg font-semibold text-gray-900">
+        <a href="{{ item.url | escape }}" 
+          target="_blank" rel="noopener noreferrer"
+          class="text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">
+          {{ item.title | title }}
+        </a>
+      </h3>
+
+      {% if item.summary %}
+        <p class="text-sm text-gray-600 line-clamp-3">
+          {{ item.summary | escape }}
+        </p>
+      {% endif %}
+
+    </div>
+
+    <div class="px-4 py-2 bg-gray-50 border-t border-gray-300 flex items-center">
+        <a href="{{ item.category | escape }}" 
+          target="_blank" rel="noopener noreferrer"
+          class="text-sm font-medium text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">
+            Read More in: {{ item.category | escape }}
+        </a>
+    </div>
+
+  </article>
+</li>

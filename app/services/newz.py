@@ -1,9 +1,35 @@
+from typing import List
+from app.data.models import NewsItem
+from app.core.duck import query_df
+
+
+def get_latest_news(limit: int = 20) -> List[NewsItem]:
+    df = query_df(f"""
+        SELECT *
+        FROM 'data/raw/**/*.parquet'
+        ORDER BY timestamp DESC
+        LIMIT {limit}
+    """)
+
+    # Convert rows to NewsItem models
+    return [NewsItem(**row) for row in df.to_dict(orient="records")]  # type: ignore
+
+
 def get_latest():
     latest = [
         {
+            "id": 4,
+            "title": "Async programming in Python: A comprehensive guide.",
+            "timestamp": "2025-06-01T09:00:00Z",
+            "url": "https://example.com/async-programming-python",
+            "summary": "Learn how to leverage async programming in Python for better performance.",
+            "image_url": "https://images.unsplash.com/photo-1659084622165-6391a99e5ae8?w=1160",
+            "category": "Technology",
+        },
+        {
             "id": 1,
             "title": "Breaking News: FastAPI is awesome!",
-            "timestamp": "2024-06-01T12:00:00Z",
+            "timestamp": "2024-09-01T12:00:00Z",
             "url": "https://example.com/breaking-news-fastapi",
             "summary": "FastAPI has been voted the most loved web framework in 2024.",
             "image_url": "https://picsum.photos/id/20/773/1160",
@@ -12,7 +38,7 @@ def get_latest():
         {
             "id": 2,
             "title": "Newz.day API reaches 1 million requests!",
-            "timestamp": "2024-06-01T11:00:00Z",
+            "timestamp": "2024-03-01T11:00:00Z",
             "url": "https://example.com/newzday-1-million-requests",
             "summary": "The Newz.day API has successfully handled over 1 million requests since launch.",
             "image_url": "https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1160",
@@ -21,20 +47,11 @@ def get_latest():
         {
             "id": 3,
             "title": "Python remains the most popular programming language.",
-            "timestamp": "2024-06-01T10:00:00Z",
+            "timestamp": "2025-02-01T10:00:00Z",
             "url": "https://example.com/python-most-popular-language",
             "summary": "According to the latest surveys, Python continues to dominate the programming world.",
             "image_url": "https://images.unsplash.com/photo-1476242906366-d8eb64c2f661?w=1160",
             "category": "Programming",
-        },
-        {
-            "id": 4,
-            "title": "Async programming in Python: A comprehensive guide.",
-            "timestamp": "2024-06-01T09:00:00Z",
-            "url": "https://example.com/async-programming-python",
-            "summary": "Learn how to leverage async programming in Python for better performance.",
-            "image_url": "https://picsum.photos/id/160/773/1160",
-            "category": "Technology",
         },
         {
             "id": 5,
@@ -42,7 +59,7 @@ def get_latest():
             "timestamp": "2024-06-01T08:00:00Z",
             "url": "https://example.com/fastapi-dependency-injection",
             "summary": "A deep dive into how FastAPI's dependency injection works and how to use it effectively.",
-            "image_url": "https://picsum.photos/id/122/773/1160",
+            "image_url": "https://images.unsplash.com/photo-1509718443690-d8e2fb3474b7?w=1160",
             "category": "Programming",
         },
     ]

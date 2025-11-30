@@ -1,4 +1,3 @@
-# app/core/auth.py
 from fastapi import Header, HTTPException, status, Request
 from app.core.config import settings
 
@@ -11,7 +10,7 @@ async def verify_api_key(
     """
     Verify API key and optionally restrict by allowed IPs.
     """
-    # Check API key
+
     if x_api_key != settings.api_key:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -19,7 +18,7 @@ async def verify_api_key(
         )
 
     # Optional IP whitelist
-    client_ip = request.client.host # type: ignore
+    client_ip = request.client.host  # type: ignore
     if settings.allowed_ips and client_ip not in settings.allowed_ips:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

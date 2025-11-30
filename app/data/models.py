@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from typing import Any, List
+from enum import Enum
+from datetime import datetime
 
 
 class NetworkSummary(BaseModel):
@@ -22,37 +24,35 @@ class API_Error(BaseModel):
     code: int
 
 
+class CategoryEnum(str, Enum):
+    technology = "technology"
+    politics = "politics"
+    culture = "culture"
+    business = "business"
+    programming = "programming"
+    sports = "sports"
+    entertainment = "entertainment"
+    health = "health"
+    science = "science"
+    world = "world"
+    finance = "finance"
+    podcasts = "podcasts"
+    education = "education"
+    environment = "environment"
+    lifestyle = "lifestyle"
+    food = "food"
+    privacy = "privacy"
+    internet = "internet"
+    gaming = "gaming"
+    music = "music"
+
+
 class NewsItem(BaseModel):
     id: int
     title: str
-    timestamp: str
+    timestamp: datetime  # was str; datetime is nicer for queries
     url: str
     summary: str
-    image_url: str
-    category: str
-
-
-categories = frozenset(
-    {
-        "technology",
-        "politics",
-        "culture",
-        "business",
-        "programming",
-        "sports",
-        "entertainment",
-        "health",
-        "science",
-        "world",
-        "finance",
-        "travel",
-        "education",
-        "environment",
-        "lifestyle",
-        "food",
-        "privacy",
-        "internet",
-        "gaming",
-        "music",
-    }
-)
+    source: str
+    image_url: str | None = None
+    category: CategoryEnum
