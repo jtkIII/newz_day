@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 
-from app.routes import hottest, latest, summary
+from app.routes import hottest, latest, summary, more, test
 from app.core.config import settings
 from app.services import netstats
 
@@ -41,6 +41,8 @@ async def request_middleware(request: Request, call_next):
 app.include_router(hottest.router, prefix="/api/v1/hottest", tags=["hottest"])
 app.include_router(latest.router, prefix="/api/v1/latest", tags=["latest"])
 app.include_router(summary.router, prefix="/api/v1/summary", tags=["summary"])
+app.include_router(more.router, prefix="/api/v1/more", tags=["more"])
+app.include_router(test.router, prefix="/api/v1/test", tags=["test"])
 
 
 @app.get(
@@ -56,4 +58,5 @@ async def root():
         "hottest_endpoint": "/api/v1/hottest/",
         "latest_endpoint": "/api/v1/latest/",
         "summary_endpoint": "/api/v1/summary/",
+        "more_endpoint": "/api/v1/more/",
     }

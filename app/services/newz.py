@@ -3,12 +3,13 @@ from app.data.models import NewsItem
 from app.core.duck import query_df
 
 
-def get_latest_news(limit: int = 20) -> List[NewsItem]:
+def get_latest_news(limit: int = 20, offset: int = 0) -> List[NewsItem]:
     df = query_df(f"""
         SELECT *
         FROM 'data/raw/**/*.parquet'
         ORDER BY timestamp DESC
         LIMIT {limit}
+        OFFSET {offset}
     """)
 
     # Convert rows to NewsItem models

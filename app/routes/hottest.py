@@ -4,8 +4,9 @@ from app.core.auth import verify_api_key
 from app.data.models import APIResponse, API_Error
 from app.services.newz import get_hottest
 
+router = APIRouter()
 
-router = APIRouter(dependencies=[Depends(verify_api_key)])
+# router = APIRouter(dependencies=[Depends(verify_api_key)])
 newz = get_hottest()
 
 

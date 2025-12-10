@@ -77,14 +77,4 @@ Could move to Postgres later without touching routes/templates.
 
 ---
 
-
-
-## TODOS:
-
-🔹 Add category filters (HTMX swap)
-🔹 Add pagination (HTMX: load more)
-🔹 Make a proper `<article>` card partial → `{% include "partials/card.html" %}`
-🔹 Add dark mode
-🔹 Add a summary page powered by aggregate DuckDB queries
-🔹 Add “Top Sources” analysis using DuckDB `GROUP BY`
-
+## TODOS: ( see ROADMAP.md )

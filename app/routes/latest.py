@@ -11,6 +11,6 @@ templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/", summary="Get the latest news", response_class=HTMLResponse)
 def latest_news(request: Request):
-    items = get_latest_news(limit=20)
+    items = get_latest_news(limit=20, offset=0)
 
     return templates.TemplateResponse("news.html", {"request": request, "items": items})
